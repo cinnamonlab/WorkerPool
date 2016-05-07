@@ -19,6 +19,7 @@ func (task SimpleTask) Execute()  {
 	fmt.Println("sleeped 10 seconds")
 }
 ```
+- Add new task to workpool
 ```
 newTask := SimpleTask{}
 workerpool.WorkPool <- newTask
