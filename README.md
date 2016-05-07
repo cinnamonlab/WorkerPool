@@ -22,7 +22,7 @@ func (task SimpleTask) Execute()  {
 - Add new task to workpool
 ```
 newTask := SimpleTask{}
-workerpool.WorkPool <- newTask
+workerpool.AddNewTask(newTask)
 ```
 
 
