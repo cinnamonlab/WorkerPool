@@ -40,7 +40,7 @@ func work(w http.ResponseWriter, r *http.Request) {
 
 	//newTask.Execute();
 
-	workerpool.WorkPool <- newTask
+	workerpool.AddNewTask(newTask)
 
 	w.WriteHeader(http.StatusOK)
 }

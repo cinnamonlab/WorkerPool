@@ -1,7 +1,7 @@
 package workerpool
 
 var workerPool chan chan ITask
-var WorkPool = make(chan ITask, 4096) // maximum number of task can push to work chan for workers working together
+var workPool = make(chan ITask, 4096) // maximum number of task can push to work chan for workers working together
 
 func Start(numWorker int) {
 	// First, initialize the channel we are going to but the workers' work channels into.
@@ -16,7 +16,7 @@ func Start(numWorker int) {
 	go func() {
 		for {
 			select {
-			case work := <-WorkPool:
+			case work := <-workPool:
 				go func() {
 					worker := <-workerPool
 					worker <- work
@@ -24,4 +24,7 @@ func Start(numWorker int) {
 			}
 		}
 	}()
+}
+func AddNewTask(task ITask)  {
+	workPool <- task
 }
